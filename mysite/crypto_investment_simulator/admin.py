@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import one_day_value
 
-# Register your models here.
+
+admin.site.register(one_day_value)
