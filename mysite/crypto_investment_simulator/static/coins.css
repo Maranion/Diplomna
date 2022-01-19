@@ -1,0 +1,107 @@
+body{
+    background: #181717;
+}
+
+.nav_bar{
+    background: #252525;
+    height: 4vmax;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+}
+
+#logo{
+    color: white;
+    font-family: montserrat;
+    font-weight: bold;
+    font-size: 2.5vmax;
+    line-height: 4vmax;
+    padding: 0 1vmax;
+}
+
+.nav_button{
+    color: white;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: montserrat;
+    font-size: 1.5vmax;
+    text-transform: uppercase;
+    float: right;
+    margin-right: 2.5vmax;
+    margin-top: 0.1vmax;
+    padding: 1vmax;
+    border-radius: 1vmax
+
+}
+
+.nav_button:hover{
+    background: #620488;
+    transition: 0.5s;
+}
+
+/*nav ul li a{
+    color: white;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: montserrat;
+    font-size: 1.5vmax;
+    text-transform: uppercase;
+    line-height: 0vmax;
+    padding: 1vmax;
+    border-radius: 1vmax
+}
+
+.nav_hover:hover{
+    background: #620488;
+    transition: 0.5s;
+}
+*/
+#container{
+    width: 95%;
+    margin-top: 8vmax;
+    overflow-y: auto;
+    margin-left: 3vmax;
+    overflow-x: hidden;
+}
+
+.coin_holder{
+    min-height: 4vmax;
+    width: 100%;
+    background: #181717;
+    text-align: center;
+    border-bottom: 0.1px solid #620488;
+    align-items: left;
+}
+
+.coin_num{
+    color: white;
+    font-family: montserrat;
+    font-size: 1.5vmax;
+    float: left;
+    margin-top: 1.8vmax;   
+}
+
+.b_s_button{
+    float: right;
+    margin-top: 1.6vmax;
+
+    display:inline-block;
+    padding:0.3em 1.2em;
+    border:1px solid black;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:montserrat;
+    font-size: 1vmax;
+    color:white;
+    background-color: #73069e;
+    text-align:center;
+    height: 2.2vmax;
+    width: 8vmax;
+}
+
+.b_s_button:hover{
+    background-color:#43015d;
+    transition: 0.5s;
+}

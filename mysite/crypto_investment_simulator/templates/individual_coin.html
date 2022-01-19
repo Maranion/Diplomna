@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+
+  </head>
+  
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>src="C:\\Users\\Carlos\\node_modules\\chart.js\\dist\\chart.js" </script>  
+    <div style="height: 40vh" style="width: 10vh">
+      <canvas id="line-chart"></canvas>
+    </div>
+      <script>
+          ctx = document.getElementById("line-chart").getContext('2d')
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: {{label | safe}},
+              datasets: [{ 
+                  data: {{value}},
+                  borderColor: "#3e95cd",
+                  fill: false
+                }],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false        
+            }
+          });
+      </script>
+
+  </body>
+</html>

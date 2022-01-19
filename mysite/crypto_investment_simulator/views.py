@@ -7,19 +7,19 @@ import csv, os, json
 from requests import Request, Session
 import pprint
 
-url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
-parameters = {
-    'convert': 'USD'
-}
-headers = {
-    'Accepts': 'aplication/json',
-    'X-CMC_PRO_API_KEY': 'd41b0196-6e67-4d76-8f93-f0bab44492a7'
-}
-session = Session()
-session.headers.update(headers)
+#url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
+#parameters = {
+#    'convert': 'USD'
+#}
+#headers = {
+#    'Accepts': 'aplication/json',
+#    'X-CMC_PRO_API_KEY': 'd41b0196-6e67-4d76-8f93-f0bab44492a7'
+#}
+#session = Session()
+#session.headers.update(headers)
 
-response = session.get(url,params=parameters)
-pprint.pprint(json.loads(response.text))
+#response = session.get(url,params=parameters)
+#pprint.pprint(json.loads(response.text))
 
 
 
@@ -108,6 +108,13 @@ def extract_csv_data(path,type):
 
 def index(request):
     template = loader.get_template('index.html')
+
+    return HttpResponse(template.render())
+
+
+def individual_coin(request):
+    template = loader.get_template('individual_coin.html')
+
     for coin in coins_list:
         data = extract_csv_data(f'{os.getcwd()}\\{coin}','1m')
 
@@ -120,4 +127,10 @@ def index(request):
         'label' : label,
         'value' : value,
     }
+
     return HttpResponse(template.render(context))
+
+def coins(request):
+    template = loader.get_template('coins.html')
+
+    return HttpResponse(template.render())

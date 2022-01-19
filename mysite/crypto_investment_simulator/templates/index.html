@@ -1,35 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script>src="C:\\Users\\Carlos\\node_modules\\chart.js\\dist\\chart.js" </script>
-    <meta charset="utf-8">
-    <title>My Page Title</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, inital-scale=1.0">
+  <link rel="stylesheet" href="..\static\index.css">
 
 </head>
-
 <body>
-  <div style="height: 40vh" style="width: 10vh">
-    <canvas id="line-chart"></canvas>
-  </div>
-    <script>
-        ctx = document.getElementById("line-chart").getContext('2d')
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: {{label | safe}},
-            datasets: [{ 
-                data: {{value}},
-                borderColor: "#3e95cd",
-                fill: false
-              }],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false        
-          }
-        });
 
-    </script>
+  <nav class="nav_bar">
+    <label id="logo">CIS</label>
+    <a class="nav_button" href="#">Profile </a>
+    <a class="nav_button" href="#">Wallet</a>
+    <a class="nav_button" href="/crypto_investment_simulator/coins">Coins</a>
+    <a class="nav_button" href="/crypto_investment_simulator">Home</a>
+  </nav>
+
+ 
 </body>
 </html>
