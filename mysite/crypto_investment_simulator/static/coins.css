@@ -2,6 +2,8 @@ body{
     background: #181717;
 }
 
+/* NAV BAR CSS */
+
 .nav_bar{
     background: #252525;
     height: 4vmax;
@@ -39,69 +41,141 @@ body{
     background: #620488;
     transition: 0.5s;
 }
+/* END --- */
 
-/*nav ul li a{
-    color: white;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: montserrat;
-    font-size: 1.5vmax;
-    text-transform: uppercase;
-    line-height: 0vmax;
-    padding: 1vmax;
-    border-radius: 1vmax
-}
 
-.nav_hover:hover{
-    background: #620488;
-    transition: 0.5s;
-}
-*/
+/* TABLE CSS */
+
 #container{
     width: 95%;
     margin-top: 8vmax;
     overflow-y: auto;
     margin-left: 3vmax;
     overflow-x: hidden;
+    border-collapse: collapse;
+}
+/* END --- */
+
+
+/* TABLE ROW CSS */
+.row_cell{
+    max-width: 4vmax;
 }
 
 .coin_holder{
-    min-height: 4vmax;
     width: 100%;
     background: #181717;
     text-align: center;
     border-bottom: 0.1px solid #620488;
-    align-items: left;
+}
+
+.head_row_cell_content{
+    color: white;
+    font-family: montserrat;
+    font-size: 1vmax;
+    float: right;
+    margin-top: 0.2vmax;
+    margin-right: -2vmax;
+    margin-bottom: 0.5vmax;
+}
+
+.cell_content{
+    color: white;
+    font-family: montserrat;
+    font-size: 1vmax;
+    float: right;
+    margin-right: -2vmax;
+    margin-top: 0.2vmax;
+
+}
+
+/* END --- */
+
+
+/* COIN NUMBER CSS */
+
+#head_num{
+    color: white;
+    font-family: montserrat;
+    font-size: 1vmax;
+    float: left;
+    margin-top: 0.2vmax;
+    max-width: 1vmax;
+    margin-bottom: 0.5vmax;
 }
 
 .coin_num{
     color: white;
     font-family: montserrat;
-    font-size: 1.5vmax;
+    font-size: 1vmax;
     float: left;
-    margin-top: 1.8vmax;   
+    margin-top: 0.2vmax;
+    max-width: 1vmax;
 }
+/* END --- */
+
+
+/* COIN ASSET CSS */
+
+#asset{
+    color: white;
+    font-family: montserrat;
+    font-size: 1vmax;
+    float: left;
+    margin-top: 0.2vmax;
+    margin-bottom: 0.5vmax;
+}
+
+.coin_icon{
+    max-width: 2vmax;
+    margin-top: 0.2vmax;
+    float: left;
+}
+
+.asset_name{
+    color: white;
+    font-family: montserrat;
+    font-size: 1vmax;
+    float: left;
+    margin-top: 0.5vmax;
+    margin-left: 1vmax;
+}
+
+.asset_symbol{
+    color: gray;
+    font-family: montserrat;
+    font-size: 1vmax;
+    float: left;
+    margin-top: 0.5vmax;
+    margin-left: 1vmax;
+
+}
+/* END --- */
+
+
+/* BUY / SELL BUTTON */
 
 .b_s_button{
     float: right;
-    margin-top: 1.6vmax;
-
-    display:inline-block;
+    margin-top: 1vmax;
+    margin-bottom: 1vmax;
     padding:0.3em 1.2em;
     border:1px solid black;
     border-radius:2em;
-    box-sizing: border-box;
+
     text-decoration:none;
     font-family:montserrat;
-    font-size: 1vmax;
+    font-size: 0.9vmax;
     color:white;
     background-color: #73069e;
     text-align:center;
     height: 2.2vmax;
-    width: 8vmax;
+    max-width: 8vmax;
 }
 
 .b_s_button:hover{
     background-color:#43015d;
     transition: 0.5s;
 }
+/* END --- */
+
