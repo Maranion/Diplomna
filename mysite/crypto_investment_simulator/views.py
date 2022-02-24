@@ -7,22 +7,39 @@ import csv, os, json
 from requests import Request, Session
 import pprint
 
-#url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
-#parameters = {
-#    'convert': 'USD'
-#}
-#headers = {
-#    'Accepts': 'aplication/json',
-#    'X-CMC_PRO_API_KEY': 'd41b0196-6e67-4d76-8f93-f0bab44492a7'
-#}
-#session = Session()
-#session.headers.update(headers)
+url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
+parameters = {
+    'convert': 'USD'
+}
+headers = {
+    'Accepts': 'aplication/json',
+    'X-CMC_PRO_API_KEY': 'd41b0196-6e67-4d76-8f93-f0bab44492a7'
+}
+session = Session()
+session.headers.update(headers)
 
-#response = session.get(url,params=parameters)
+response = session.get(url,params=parameters)
 #pprint.pprint(json.loads(response.text))
 
 
+def get_data():
+    #pprint.pprint(json.loads(response.text)['data'][0]['quote']['USD']['percent_change_24h'])
+    #pprint.pprint(json.loads(response.text)['data'][0]['quote']['USD']['price'])
+    #pprint.pprint(json.loads(response.text)['data'][0]['quote']['USD']['market_cap'])
+    #pprint.pprint(json.loads(response.text))
+    
+    coin_list = [
+        1,
+        json.loads(response.text)['data'][0]['symbol'].lower(),
+        json.loads(response.text)['data'][0]['slug'].title(),
+        json.loads(response.text)['data'][0]['symbol'],
+        round(json.loads(response.text)['data'][0]['quote']['USD']['price'],2),
+        round(json.loads(response.text)['data'][0]['quote']['USD']['percent_change_24h'],2),
+        round(json.loads(response.text)['data'][0]['quote']['USD']['market_cap']/1000000000,2)
+    ] 
 
+    return coin_list
+    
 
 coins_list = ['test.csv']
 
@@ -106,9 +123,10 @@ def extract_csv_data(path,type):
 
     return date, value
 
+
 def index(request):
     template = loader.get_template('index.html')
-
+    get_data()
     return HttpResponse(template.render())
 
 
@@ -132,5 +150,9 @@ def individual_coin(request):
 
 def coins(request):
     template = loader.get_template('coins.html')
+    coin_list = get_data()
+    context = {
+        'coin_data' : coin_list
+    }
 
-    return HttpResponse(template.render())
+    return HttpResponse(template.render(context))
