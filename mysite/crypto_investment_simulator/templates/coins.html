@@ -30,7 +30,8 @@
     </tr>
 
     <!-- ASSETS ROWS -->
-  
+    {%for coin_data in coin_list%}
+
     <tr class="coin_holder"> 
       <th><a class="coin_num">{{coin_data.0}}</a></th>
       <th class="row_cell">
@@ -40,11 +41,18 @@
       </th>
 
       <th class="row_cell"><a class="cell_content">${{coin_data.4}}</a></th>
-      <th class="row_cell"><a class="cell_content">{{coin_data.5}}%</a></th>
-      <th class="row_cell"><a class="cell_content">{{coin_data.6}}B</a></th>
-      <th class="row_cell"><button class ="b_s_button">BUY | SELL</button></th>
-    </tr>
+      
+      {%if coin_data.5 > 0%}
+        <th class="row_cell"><a class="cell_content" style="color:green">+{{coin_data.5}}%</a></th>
+      {% else %}
+        <th class="row_cell"><a class="cell_content" style="color:red">{{coin_data.5}}%</a></th>
+      {% endif %}
 
+      <th class="row_cell"><a class="cell_content">{{coin_data.6}}B</a></th>
+      <th class="row_cell"><button class ="b_s_button" name='b_s_button' value={{coin_data.0}} >BUY | SELL</button></th>
+    </tr>
+    
+    {% endfor %}
 
   </table>
  

@@ -19,27 +19,57 @@ session = Session()
 session.headers.update(headers)
 
 response = session.get(url,params=parameters)
-#pprint.pprint(json.loads(response.text))
+#pprint.pprint(json.loads(response.text
+MAX_COINS = 100
+
+
+
+# --- COINMARKETCAP DATA EXTRACTION ---
+
+def get_labels(num,list):
+
+    list.append(json.loads(response.text)['data'][num]['symbol'].lower())
+    list.append(json.loads(response.text)['data'][num]['slug'].title())
+    list.append(json.loads(response.text)['data'][num]['symbol'])
+
+    return(list)
+
+
+def get_price(num,list):
+
+    value = json.loads(response.text)['data'][num]['quote']['USD']['price']
+    if value < 0.1:
+        list.append(round(value,8))
+        return(list)
+    
+    list.append(round(value,2))
+    return(list)
+
+
+def get_market_data(num, list):
+
+    list.append(round(json.loads(response.text)['data'][num]['quote']['USD']['percent_change_24h'],2))
+    list.append(round(json.loads(response.text)['data'][num]['quote']['USD']['market_cap']/1000000000,2))
+    
+    return(list)
 
 
 def get_data():
-    #pprint.pprint(json.loads(response.text)['data'][0]['quote']['USD']['percent_change_24h'])
-    #pprint.pprint(json.loads(response.text)['data'][0]['quote']['USD']['price'])
-    #pprint.pprint(json.loads(response.text)['data'][0]['quote']['USD']['market_cap'])
-    #pprint.pprint(json.loads(response.text))
-    
-    coin_list = [
-        1,
-        json.loads(response.text)['data'][0]['symbol'].lower(),
-        json.loads(response.text)['data'][0]['slug'].title(),
-        json.loads(response.text)['data'][0]['symbol'],
-        round(json.loads(response.text)['data'][0]['quote']['USD']['price'],2),
-        round(json.loads(response.text)['data'][0]['quote']['USD']['percent_change_24h'],2),
-        round(json.loads(response.text)['data'][0]['quote']['USD']['market_cap']/1000000000,2)
-    ] 
+    coin_list =[]
+
+    for num in range(0,MAX_COINS):
+
+        coin = [num+1]
+        
+        coin = get_labels(num,coin)
+        coin = get_price(num,coin)
+        coin = get_market_data(num,coin)
+
+        coin_list.append(coin)
 
     return coin_list
-    
+
+# ----------------------------------------    
 
 coins_list = ['test.csv']
 
@@ -152,7 +182,7 @@ def coins(request):
     template = loader.get_template('coins.html')
     coin_list = get_data()
     context = {
-        'coin_data' : coin_list
+        'coin_list' : coin_list
     }
 
     return HttpResponse(template.render(context))
