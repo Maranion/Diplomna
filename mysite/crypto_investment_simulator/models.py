@@ -1,7 +1,10 @@
+from email.policy import default
+from multiprocessing.dummy import Array
+from statistics import mode
+from unicodedata import name
 from django.db import models
+from matplotlib import container
+from django.contrib.postgres.fields import ArrayField
 
 
-class one_day_value(models.Model):
-    date = models.DateField('date of change')
-    close_value = models.FloatField()
-    symbol = models.CharField(max_length=12)
+

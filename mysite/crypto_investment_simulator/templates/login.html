@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, inital-scale=1.0">
+  <link rel="stylesheet" href="..\static\login.css">
+
+</head>
+<body>
+    
+    <form method="POST" action="">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="submit" name="login_user">
+
+
+
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+ 
+
+</body>
+</html>

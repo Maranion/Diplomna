@@ -1,11 +1,23 @@
 from datetime import date
+from cv2 import redirectError
 from django import template
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 import csv, os, json
+from matplotlib.style import context, use
 from requests import Request, Session
 import pprint
+from django.shortcuts import redirect
+
+#from .models import Wallet
+
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 parameters = {
@@ -68,6 +80,16 @@ def get_data():
         coin_list.append(coin)
 
     return coin_list
+
+def get_coin(num):
+    num = int(num)
+    coin = [num]
+        
+    coin = get_labels(num-1,coin)
+    coin = get_price(num-1,coin)
+    coin = get_market_data(num-1,coin)
+
+    return coin
 
 # ----------------------------------------    
 
@@ -153,32 +175,95 @@ def extract_csv_data(path,type):
 
     return date, value
 
+def redirect_to_coin():
+    return 0
 
+
+
+def logout_user(request):
+
+    logout(request)
+
+    return redirect('login')
+
+
+def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
+    template = loader.get_template('login.html')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        print(username)
+        print(password)
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.info(request, "bad kitty")
+
+    return HttpResponse(template.render())
+
+
+def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
+    template = loader.get_template('register.html')
+
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #user = form.cleaned_data.get('username')
+            #print(user)
+            messages.success(request, 'acc was .')
+
+            return redirect('login')
+
+
+    context = {'form' : form }
+    return HttpResponse(template.render(context))
+
+
+@login_required(login_url='login')
 def index(request):
     template = loader.get_template('index.html')
     get_data()
     return HttpResponse(template.render())
 
 
+@login_required(login_url='login')
 def individual_coin(request):
+
+    user = request.user
+    user_wallet_create(user)
+
     template = loader.get_template('individual_coin.html')
 
-    for coin in coins_list:
-        data = extract_csv_data(f'{os.getcwd()}\\{coin}','1m')
+    coin = get_coin(session.coin)
 
-    label = data[0]
-    label.reverse()
-    
-    value = data[1]
-    value.reverse()
     context = {
-        'label' : label,
-        'value' : value,
+        'coin' : coin
     }
 
     return HttpResponse(template.render(context))
 
+@login_required(login_url='login')
 def coins(request):
+    if request.POST.get('b_s_button'):
+        info = request.POST.get('b_s_button')
+        session.coin = info
+        return redirect('individual_coin')
+
+ 
     template = loader.get_template('coins.html')
     coin_list = get_data()
     context = {
@@ -186,3 +271,9 @@ def coins(request):
     }
 
     return HttpResponse(template.render(context))
+
+def user_wallet_create(user):
+    Wallet.objects.create(user, [], [])
+
+def user_wallet_get(user):
+    print(Wallet.objects.get())

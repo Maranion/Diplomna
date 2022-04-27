@@ -49,7 +49,12 @@
       {% endif %}
 
       <th class="row_cell"><a class="cell_content">{{coin_data.6}}B</a></th>
-      <th class="row_cell"><button class ="b_s_button" name='b_s_button' value={{coin_data.0}} >BUY | SELL</button></th>
+      <th class="row_cell">
+        <form method="post">
+          <button class ="b_s_button" name='b_s_button' value={{coin_data.0}}>BUY | SELL</button>
+        </form>
+      </th>
+
     </tr>
     
     {% endfor %}

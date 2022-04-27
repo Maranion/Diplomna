@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, inital-scale=1.0">
+  <link rel="stylesheet" href="..\static\individual_coin.css">
 
-  </head>
+</head>
   
-  <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<body>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script>src="C:\\Users\\Carlos\\node_modules\\chart.js\\dist\\chart.js" </script>  
     <div style="height: 40vh" style="width: 10vh">
       <canvas id="line-chart"></canvas>
@@ -27,9 +29,33 @@
             options: {
               responsive: true,
               maintainAspectRatio: false        
-            }
+            } 
           });
       </script>
+--> 
 
-  </body>
+  <!-- NAV BAR -->
+  <nav class="nav_bar">
+    <label id="logo">CIS</label>
+    <a class="nav_button" href="#">Profile </a>
+    <a class="nav_button" href="#">Wallet</a>
+    <a class="nav_button" href="/crypto_investment_simulator/coins">Coins</a>
+    <a class="nav_button" href="/crypto_investment_simulator">Home</a>
+  </nav>
+
+  <div id="coin_container">
+    <div id="coin_bar"><a class="asset_symbol">{{coin.3}}</a> <a>{{coin.2}}</a></div>
+    <img src="..\static\icons\{{coin.1}}.png" class="coin_icon">
+
+    {%if coin.5 > 0%}
+    <div id="percent" style="color: green">+{{coin.5}}%</div>
+    {%else%}
+    <div id="percent" style="color: red">{{coin.5}}%</div>
+    {%endif%}
+
+    <div id="price">${{coin.4}}</div>
+  </div>
+
+
+</body>
 </html>

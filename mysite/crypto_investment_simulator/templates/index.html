@@ -16,7 +16,14 @@
     <a class="nav_button" href="/crypto_investment_simulator/coins">Coins</a>
     <a class="nav_button" href="/crypto_investment_simulator">Home</a>
   </nav>
-
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+  <a href="{% url 'logout' %}">logout</a>
  
 </body>
 </html>

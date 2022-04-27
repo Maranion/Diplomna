@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, inital-scale=1.0">
+  <link rel="stylesheet" href="..\static\register.css">
+
+</head>
+<body>
+
+<form method="POST" action="">
+    {{form.username.label}}
+    {{form.username}}
+
+    {{form.password1.label}}
+    {{form.password1}}
+
+    {{form.password2.label}}
+    {{form.password2}}
+
+    {{form.errors}}
+
+    <input type="submit" name="create_user">
+</form>
+
+ 
+</body>
+</html>
