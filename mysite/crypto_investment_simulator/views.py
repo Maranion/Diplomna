@@ -10,7 +10,7 @@ from requests import Request, Session
 import pprint
 from django.shortcuts import redirect
 
-#from .models import Wallet
+from .models import Wallet
 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
@@ -243,8 +243,8 @@ def index(request):
 @login_required(login_url='login')
 def individual_coin(request):
 
-    user = request.user
-    user_wallet_create(user)
+    #user = request.user
+    #user_wallet_create(user)
 
     template = loader.get_template('individual_coin.html')
 
