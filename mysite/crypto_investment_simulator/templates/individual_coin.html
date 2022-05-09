@@ -42,6 +42,7 @@
     <a class="nav_button" href="/crypto_investment_simulator/coins">Coins</a>
     <a class="nav_button" href="/crypto_investment_simulator">Home</a>
   </nav>
+  
 
   <div id="coin_container">
     <div id="coin_bar"><a class="asset_symbol">{{coin.3}}</a> <a>{{coin.2}}</a></div>
@@ -54,6 +55,16 @@
     {%endif%}
 
     <div id="price">${{coin.4}}</div>
+
+    <form method="POST" id="container">
+      <input id="money_val" name="money_val" type='text'>
+      <input type='hidden' value='{{coin.2}}' name='hidden_value'>
+      <input type='hidden' value='{{coin.4}}' name='hidden_value2'>
+      <input id="submit_btn" type='submit' name='buy_btn' value="BUY">
+      <input id="submit_btn" type='submit' name='sell_btn' value="SELL">
+
+
+    </form>
   </div>
 
 

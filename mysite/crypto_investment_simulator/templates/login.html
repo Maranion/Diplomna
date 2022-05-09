@@ -8,15 +8,46 @@
 
 </head>
 <body>
+
+      <!-- NAV BAR -->
+  <nav class="nav_bar">
+    <label id="logo">CIS</label>
+    <a class="nav_button" href="#">Profile </a>
+    <a class="nav_button" href="#">Wallet</a>
+    <a class="nav_button" href="/crypto_investment_simulator/coins">Coins</a>
+    <a class="nav_button" href="/crypto_investment_simulator">Home</a>
+  </nav>
     
-    <form method="POST" action="">
-        <input type="text" name="username">
-        <input type="text" name="password">
+
+
+    <form method="POST" action="" id='log_form'>
+        <table id="container">
+            <tr>
+                <th>
+                    <a class="labels">Username:</a>
+                </th>
+                <th>
+                    <input type="text" name="username">
+                </th>
+
+                <tr>
+                    <th>
+                        <a class="labels">Password:</a>
+                    </th>
+                    <th>
+                        <input type="text" name="password">
+                    </th>
+                </tr>                
+            </tr>
+        </table>
+
         <input type="submit" name="login_user">
 
-
-
     </form>
+
+
+<!--
+        </form>
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -24,7 +55,8 @@
         {% endfor %}
     </ul>
     {% endif %}
- 
+-->  
+
 
 </body>
 </html>
